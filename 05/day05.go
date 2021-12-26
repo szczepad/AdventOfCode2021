@@ -40,8 +40,16 @@ func ConvertLineToCoordinates(inputLine string) []int {
 	return intCoordinates
 }
 
+func IsDiagonal(coords []int) bool {
+	return true
+}
+
 func main() {
 	input := LoadInput("input")
 
-	fmt.Println(input)
+	for _, line := range input {
+		coords := ConvertLineToCoordinates(line)
+
+		fmt.Println(coords)
+	}
 }

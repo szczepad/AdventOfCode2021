@@ -28,6 +28,10 @@ func TestConvertLineToCoordinates(t *testing.T) {
 		9,
 	}, ConvertLineToCoordinates("0,9 -> 5,9"))
 }
+
+func TestIsDiagonal(t *testing.T) {
+	assert.Equal(t, false, IsDiagonal([]int{0, 9, 5, 9}))
+}
 func TestGetOverlaps(t *testing.T) {
 
 }
