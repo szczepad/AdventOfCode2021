@@ -20,6 +20,14 @@ func TestLoadInput(t *testing.T) {
 	}, LoadInput("input_test"))
 }
 
+func TestConvertLineToCoordinates(t *testing.T) {
+	assert.Equal(t, []int{
+		0,
+		9,
+		5,
+		9,
+	}, ConvertLineToCoordinates("0,9 -> 5,9"))
+}
 func TestGetOverlaps(t *testing.T) {
 
 }

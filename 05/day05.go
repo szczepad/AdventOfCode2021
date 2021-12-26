@@ -24,6 +24,10 @@ func LoadInput(filePath string) []string {
 	return input
 }
 
+func ConvertLineToCoordinates(inputLine string) []int {
+	return []int{1, 0, 0}
+}
+
 func main() {
 	input := LoadInput("input")
 
