@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func LoadInput(filePath string) []string {
@@ -25,7 +27,17 @@ func LoadInput(filePath string) []string {
 }
 
 func ConvertLineToCoordinates(inputLine string) []int {
-	return []int{1, 0, 0}
+	replacedString := strings.Replace(inputLine, " -> ", ",", 1)
+	stringCoordinates := strings.Split(replacedString, ",")
+
+	var intCoordinates []int
+
+	for _, element := range stringCoordinates {
+		tmp, _ := strconv.Atoi(element)
+		intCoordinates = append(intCoordinates, tmp)
+	}
+
+	return intCoordinates
 }
 
 func main() {
