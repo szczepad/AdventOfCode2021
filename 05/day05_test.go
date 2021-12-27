@@ -32,6 +32,25 @@ func TestConvertLineToCoordinates(t *testing.T) {
 func TestIsDiagonal(t *testing.T) {
 	assert.Equal(t, false, IsDiagonal([]int{0, 9, 5, 9}))
 }
+
+func TestDrawLine(t *testing.T) {
+	const rows = 10
+	const cols = 10
+
+	var board = make([]int, rows*cols)
+
+	input := []int{0, 9, 5, 9}
+
+	DrawLine(board, rows, input)
+
+	//Check whether the line was drawn
+	assert.Equal(t, 1, board[0*rows+9])
+	assert.Equal(t, 1, board[1*rows+9])
+	assert.Equal(t, 1, board[2*rows+9])
+	assert.Equal(t, 1, board[3*rows+9])
+	assert.Equal(t, 1, board[4*rows+9])
+	assert.Equal(t, 1, board[5*rows+9])
+}
 func TestGetOverlaps(t *testing.T) {
 
 }
