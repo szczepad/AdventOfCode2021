@@ -26,8 +26,32 @@ func GetOutputsFromFile(filePath string) []string {
 	return outputs
 }
 
+func IsOne(s string) bool {
+	if len(s) == 2 {
+		return true
+	} else {
+		return false
+	}
+}
+
 func IsFour(s string) bool {
 	if len(s) == 4 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func IsSeven(s string) bool {
+	if len(s) == 3 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func IsEight(s string) bool {
+	if len(s) == 7 {
 		return true
 	} else {
 		return false

@@ -20,6 +20,16 @@ func TestGetOutputsFromFile(t *testing.T) {
 	}, GetOutputsFromFile("input_test"))
 }
 
+func TestIsOne(t *testing.T) {
+	assert.Equal(t, true, IsOne("fg"))
+}
 func TestIsFour(t *testing.T) {
 	assert.Equal(t, true, IsFour("gcbe"))
+}
+func TestIsSeven(t *testing.T) {
+	assert.Equal(t, true, IsSeven("cgb"))
+}
+
+func TestIsEight(t *testing.T) {
+	assert.Equal(t, true, IsEight("gbdfcae"))
 }
