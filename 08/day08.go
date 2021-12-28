@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -70,4 +71,10 @@ func CountOneFourSevenEights(outputs []string) int {
 		}
 	}
 	return counter
+}
+
+func main() {
+	outputs := GetOutputsFromFile("input")
+
+	fmt.Println(CountOneFourSevenEights(outputs))
 }
