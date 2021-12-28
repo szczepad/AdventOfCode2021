@@ -33,3 +33,18 @@ func TestIsSeven(t *testing.T) {
 func TestIsEight(t *testing.T) {
 	assert.Equal(t, true, IsEight("gbdfcae"))
 }
+
+func TestCountOneFourSevenEights(t *testing.T) {
+	assert.Equal(t, 26, CountOneFourSevenEights([]string{
+		"fdgacbe cefdb cefbgd gcbe",
+		"fcgedb cgb dgebacf gc",
+		"cg cg fdcagb cbg",
+		"efabcd cedba gadfec cb",
+		"gecf egdcabf bgf bfgea",
+		"gebdcfa ecba ca fadegcb",
+		"cefg dcbef fcge gbcadfe",
+		"ed bcgafe cdgba cbgef",
+		"gbdfcae bgc cg cgb",
+		"fgae cfgab fg bagce",
+	}))
+}

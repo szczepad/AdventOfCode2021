@@ -57,3 +57,17 @@ func IsEight(s string) bool {
 		return false
 	}
 }
+
+func CountOneFourSevenEights(outputs []string) int {
+	var counter int
+
+	for _, output := range outputs {
+		outputSplit := strings.Split(output, " ")
+		for _, element := range outputSplit {
+			if IsOne(element) || IsFour(element) || IsSeven(element) || IsEight(element) {
+				counter++
+			}
+		}
+	}
+	return counter
+}
