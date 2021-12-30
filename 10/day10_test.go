@@ -105,3 +105,68 @@ func TestCalculateErrorScore(t *testing.T) {
 
 	assert.Equal(t, 26397, CalculateErrorScore(input))
 }
+
+func TestIsCorrupted(t *testing.T) {
+	input1 := []string{
+		"{", "(", "[", "(", "<", "{", "}", "[", "<", ">", "[", "]", "}",
+		">", "{", "[", "]", "{", "[", "(", "<", "(", ")", ">",
+	}
+	input2 := []string{
+		"[", "(", "{", "(", "<", "(", "(", ")", ")", "[", "]", ">", "[",
+		"[", "{", "[", "]", "{", "<", "(", ")", "<", ">", ">",
+	}
+
+	assert.Equal(t, true, IsCorrupted(input1))
+	assert.Equal(t, false, IsCorrupted(input2))
+}
+
+func TestGetUncorruptedLines(t *testing.T) {
+	input := []string{
+		"[({(<(())[]>[[{[]{<()<>>",
+		"[(()[<>])]({[<{<<[]>>(",
+		"{([(<{}[<>[]}>{[]{[(<()>",
+		"(((({<>}<{<{<>}{[]{[]{}",
+		"[[<[([]))<([[{}[[()]]]",
+		"[{[{({}]{}}([{[{{{}}([]",
+		"{<[[]]>}<{[{[{[]{()[[[]",
+		"[<(<(<(<{}))><([]([]()",
+		"<{([([[(<>()){}]>(<<{{",
+		"<{([{{}}[<[[[<>{}]]]>[]]",
+	}
+
+	output := []string{
+		"[({(<(())[]>[[{[]{<()<>>",
+		"[(()[<>])]({[<{<<[]>>(",
+		"(((({<>}<{<{<>}{[]{[]{}",
+		"{<[[]]>}<{[{[{[]{()[[[]",
+		"<{([{{}}[<[[[<>{}]]]>[]]",
+	}
+
+	assert.Equal(t, output, GetUncorruptedLines(input))
+}
+
+func TestGetMissingSymbols(t *testing.T) {
+	input := []string{
+		"[", "(", "{", "(", "<", "(", "(", ")", ")", "[", "]",
+		">", "[", "[", "{", "[", "]", "{", "<", "(", ")", "<", ">", ">",
+	}
+	output := "}}]])})]"
+
+	assert.Equal(t, output, GetMissingSymbols(input))
+}
+
+func TestRevertStack(t *testing.T) {
+	input := []string{"[", "(", "{", "(", "[", "[", "{", "{"}
+	output := []string{"{", "{", "[", "[", "(", "{", "(", "["}
+
+	assert.Equal(t, output, RevertStack(input))
+}
+
+func TestGetClosingSymbol(t *testing.T) {
+	assert.Equal(t, "]", GetClosingSymbol("["))
+}
+
+func TestCalculateMissingScore(t *testing.T) {
+	assert.Equal(t, 294, CalculateMissingScore([]string{"]", ")", "}", ">"}))
+	assert.Equal(t, 288957, CalculateMissingScore([]string{"}", "}", "]", "]", ")", "}", ")", "]"}))
+}

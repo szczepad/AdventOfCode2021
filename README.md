@@ -13,7 +13,7 @@ The language chosen for this challenge is Golang.
 | 07  | :heavy_check_mark: | :heavy_check_mark:  |
 | 08  | :heavy_check_mark: |      :red_circle:   |
 | 09  | :heavy_check_mark: |      :red_circle:   |
-| 10  | :heavy_check_mark: |      :red_circle:   |
+| 10  | :heavy_check_mark: | :heavy_check_mark:  |
 | 11  | :red_circle:       |      :red_circle:   |
 | 12  | :red_circle:       |      :red_circle:   |
 | 13  | :red_circle:       |      :red_circle:   |
