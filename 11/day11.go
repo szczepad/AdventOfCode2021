@@ -112,8 +112,10 @@ func HasAlreadyFlashed(flashedElements []int, toCheck int) bool {
 	return alreadyFlashed
 }
 
-func ExecuteCycle(input []int, cols int) []int {
+func ExecuteCycle(input []int, cols int) ([]int, int) {
 	output := IncreaseEnergy(input)
+	numberOfFlashes := 0
+
 	allFlashed := false
 	var flashed []int
 
@@ -126,6 +128,7 @@ func ExecuteCycle(input []int, cols int) []int {
 			if elem > 9 && !HasAlreadyFlashed(flashed, i) {
 				output = DoFlash(output, i, cols)
 				flashed = append(flashed, i)
+				numberOfFlashes++
 				//Board has changed. Another Check necessary
 				allFlashed = false
 			}
@@ -136,5 +139,18 @@ func ExecuteCycle(input []int, cols int) []int {
 		}
 	}
 
-	return output
+	return output, numberOfFlashes
+}
+
+func CalculateFlashesAfterN(input []int, n int, cols int) int {
+	totalFlashes := 0
+	output := input
+
+	for i := 0; i < n-1; i++ {
+		tmpOutput, tmpFlashes := ExecuteCycle(output, cols)
+		output = tmpOutput
+		totalFlashes += tmpFlashes
+	}
+
+	return totalFlashes
 }
