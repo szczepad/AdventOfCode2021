@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -146,11 +147,17 @@ func CalculateFlashesAfterN(input []int, n int, cols int) int {
 	totalFlashes := 0
 	output := input
 
-	for i := 0; i < n-1; i++ {
+	for i := 0; i < n; i++ {
 		tmpOutput, tmpFlashes := ExecuteCycle(output, cols)
 		output = tmpOutput
 		totalFlashes += tmpFlashes
 	}
 
 	return totalFlashes
+}
+
+func main() {
+	input, cols := LoadFile("input")
+
+	fmt.Println(CalculateFlashesAfterN(input, 100, cols))
 }
