@@ -62,12 +62,12 @@ func DoFlash(input []int, position int, cols int) []int {
 	}
 
 	//Increase Bottom
-	if (y+1)+x < len(input) {
+	if ConvertCoordinatesToPosition(x, y+1, cols) < len(input) {
 		output[ConvertCoordinatesToPosition(x, y+1, cols)]++
 	}
 
 	//Increase Top-Left
-	if ConvertCoordinatesToPosition(x-1, y-1, cols) >= 0 {
+	if x-1 >= 0 && ConvertCoordinatesToPosition(x-1, y-1, cols) >= 0 {
 		output[ConvertCoordinatesToPosition(x-1, y-1, cols)]++
 	}
 
@@ -77,12 +77,12 @@ func DoFlash(input []int, position int, cols int) []int {
 	}
 
 	//Increase Bottom-Left
-	if (x-1) >= 0 && (y+1)+x < len(input) {
+	if (x-1) >= 0 && ConvertCoordinatesToPosition(x-1, y+1, cols) < len(input) {
 		output[ConvertCoordinatesToPosition((x-1), (y+1), cols)]++
 	}
 
 	//Increase Bottom-Right
-	if (x+1) < cols && (y+1)+x < len(input) {
+	if (x+1) < cols && ConvertCoordinatesToPosition(x+1, y+1, cols) < len(input) {
 		output[ConvertCoordinatesToPosition((x+1), (y+1), cols)]++
 	}
 
@@ -98,4 +98,43 @@ func ConvertPositionToCoordinates(position int, cols int) (x int, y int) {
 
 func ConvertCoordinatesToPosition(x int, y int, cols int) int {
 	return (y * cols) + x
+}
+
+func HasAlreadyFlashed(flashedElements []int, toCheck int) bool {
+	alreadyFlashed := false
+
+	for _, elem := range flashedElements {
+		if elem == toCheck {
+			alreadyFlashed = true
+		}
+	}
+
+	return alreadyFlashed
+}
+
+func ExecuteCycle(input []int, cols int) []int {
+	output := IncreaseEnergy(input)
+	allFlashed := false
+	var flashed []int
+
+	for !allFlashed {
+		//Assume that it's not necessary to check one more time
+		allFlashed = true
+
+		for i, elem := range output {
+			//Check if element is eligible for flash
+			if elem > 9 && !HasAlreadyFlashed(flashed, i) {
+				output = DoFlash(output, i, cols)
+				flashed = append(flashed, i)
+				//Board has changed. Another Check necessary
+				allFlashed = false
+			}
+		}
+
+		for _, i := range flashed {
+			output[i] = 0
+		}
+	}
+
+	return output
 }
